@@ -1,19 +1,25 @@
 int myColor = color((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
+int extend = 30;
 public void setup()
 {
-  size(400,400);
-  //background(0);
+  size(600,600);
+  background(180,244,255);
 }
 public void draw()
 {
-  //snowflake(200, 200, 200);
-  //line(200, 200 - 150, 200, 200);
-  //line(200, 200, 200, 350);
-  //line(80, 100, 200, 200);
-  //line(320, 100, 200, 200);
-  //line(80, 300, 200, 200);
-  //line(320, 300, 200, 200);
-  
+  strokeWeight(2);
+  line(300, 300 - 150, 300, 300);
+  snowflake(300, 225, 70, 3*Math.PI/2);
+  line(300, 300, 300, 450);
+  snowflake(300, 375, 70, Math.PI/2);
+  line(180, 200, 300, 300);
+  snowflake(240, 250, 70, 7*Math.PI/6);
+  line(420, 200, 300, 300);
+  snowflake(360, 250, 70, 11*Math.PI/6);
+  line(180, 400, 300, 300);
+  snowflake(240, 350, 70, 5*Math.PI/6);
+  line(420, 400, 300, 300);
+  snowflake(360, 350, 70, Math.PI/6);
 }
 public void mousePressed()//optional
 {
@@ -27,16 +33,10 @@ public void snowflake(int x, int y, int len, double angle)
   int endY1 = (int)(len*Math.sin(angle1)+y);
   int endX2 = (int)(len*Math.cos(angle2) + x);
   int endY2 = (int)(len*Math.sin(angle2)+y );
-  if(len <= 30){
-    //line(x, y - 150, x, y);
-    //line(x, y, x, y + 150);
-    //line(x - 120, y - 100, x, y);
-    //line(x + 120, y - 100, x, y);
-    //line(x - 120, y + 100, x, y);
-    //line(x + 120, y + 100, x, y);
-    line(x, y, endX1, endY1);
-    line(x, y, endX2, endY2);
-  } else {
-    
+  line(x, y, endX1, endY1);
+  line(x, y, endX2, endY2);
+  if(len>extend){
+    snowflake(endX1, endY1, extend-1, angle1);
+    snowflake(endX2, endY2, extend-1, angle2);
   }
 }
